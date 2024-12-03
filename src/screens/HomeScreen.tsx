@@ -10,6 +10,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { Swipeable } from "react-native-gesture-handler";
+import { Icon } from "react-native-elements";
 
 const characterTemplate = {
   id: null, // Vai ser botado automaticamente
@@ -97,6 +98,10 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate("CharacterSheet", { characterId: character.id });
   };
 
+  const handleDiceNavigation = () => {
+    navigation.navigate("DiceRolling");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>My Character Sheets</Text>
@@ -116,9 +121,17 @@ const HomeScreen = ({ navigation }) => {
           </Swipeable>
         )}
       />
-      <TouchableOpacity style={styles.createButton} onPress={handleCreateCharacter}>
-        <Text style={styles.buttonText}>Create New Character</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonRow}>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={handleDiceNavigation}
+        >
+          <Icon name="casino" type="material" color="#fff" size={20} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.createButton} onPress={handleCreateCharacter}>
+          <Text style={styles.buttonText}>Create New Character</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -128,6 +141,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#1E1E1E",
     padding: 20,
+  },
+  iconButton: {
+    flex: 1,
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: "#444",
+    marginRight: 10,
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  createButton: {
+    flex: 3,
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: "#444",
+    alignItems: "center",
   },
   title: {
     color: "#FFFFFF",
@@ -146,13 +179,6 @@ const styles = StyleSheet.create({
   characterText: {
     color: "#FFFFFF",
     fontSize: 16,
-  },
-  createButton: {
-    padding: 15,
-    borderRadius: 10,
-    backgroundColor: "#444",
-    alignItems: "center",
-    marginTop: 20,
   },
   buttonText: {
     color: "#FFFFFF",
