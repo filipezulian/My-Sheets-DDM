@@ -209,22 +209,6 @@ const CharacterSheetScreen = ({ route, navigation }) => {
             />
           ))}
         </View>
-
-        {/* Saving Throws Section */}
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionHeaderText}>Saving Throws</Text>
-        </View>
-
-        <View style={styles.savingThrowsContainer}>
-          {Object.keys(character.savingThrows).map((savingThrow) => (
-            <SavingThrow
-              key={savingThrow}
-              label={savingThrow.toUpperCase()}
-              modifier={character.savingThrows[savingThrow]}
-              onChange={(value) => handleInputChange(savingThrow, value)}
-            />
-          ))}
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
